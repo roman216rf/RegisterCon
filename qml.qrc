@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>components/RegTabButton.qml</file>
+        <file>components/RegItemTab.qml</file>
+        <file>icons/performer.ico</file>
+        <file>icons/clients.ico</file>
+        <file>icons/contracts.ico</file>
+    </qresource>
+</RCC>
