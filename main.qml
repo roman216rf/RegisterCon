@@ -2,12 +2,18 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
+import QtQuick.Dialogs 1.3
 import "components" as RegComponents
+
 Window {
     width: 640
     height: 480
     visible: true
     title: qsTr("RegisterCon")
+
+    RegComponents.RegPopupCreateTabContracts{
+        id: popupCreateTabContracts
+    }
 
     TabBar{
         id: mainTabBar
@@ -56,8 +62,10 @@ Window {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         currentIndex: mainTabBar.currentIndex
+
         RegComponents.RegItemTab{
             id: contracts
+
             StackLayout{
                 id: contractsLayout
                 anchors.left: parent.left
@@ -68,15 +76,21 @@ Window {
                 RegComponents.RegItemTab{
                     id: test
                 }
-                RegComponents.RegItemTab{
-                    id: test2
+            }
+
+            Component{
+                id: addTabButton
+                RegComponents.RegTabButton{
+                    width: contracts.width / contractsTabBar.count
+                    Connections{
+                        target: contractsTabBar
+                    }
                 }
-                RegComponents.RegItemTab{
-                    id: test3
-                }
-                RegComponents.RegItemTab{
-                    id: test4
-                }
+            }
+
+            Component{
+                id: addTabLayout
+                RegComponents.RegItemTab{}
             }
 
             TabBar{
@@ -84,25 +98,30 @@ Window {
                 width: parent.width
                 anchors.left: parent.left
                 anchors.right: parent.right
-                anchors.bottom: parent.bottom
+                anchors.bottom: addButton.top
                 contentHeight: 40
                 spacing: 0
+                background: Rectangle{
+                    color: "#97D176"
+                    anchors.fill: parent
+                }
+            }
 
-                RegComponents.RegTabButton{
-                    text: "test"
-                    width: contracts.width / contractsTabBar.count
+            Button{
+                id: addButton
+                width: contracts.width
+                height: 40
+                anchors.bottom: parent.bottom
+                background: Rectangle{
+                    color: addButton.hovered ? "#42D45C" : "#1CA334"
+                    anchors.fill: parent
                 }
-                RegComponents.RegTabButton{
-                    text: "test"
-                    width: contracts.width / contractsTabBar.count
+                onClicked:{
+                    popupCreateTabContracts.show()
                 }
-                RegComponents.RegTabButton{
-                    text: "test"
-                    width: contracts.width / contractsTabBar.count
-                }
-                RegComponents.RegTabButton{
-                    text: "test"
-                    width: contracts.width / contractsTabBar.count
+                RegComponents.RegWhiteText{
+                    text: "Добавить"
+                    anchors.centerIn: parent
                 }
             }
         }

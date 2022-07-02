@@ -2,6 +2,8 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.impl 2.12
 import QtQuick.Layouts 1.12
+import "../components" as RegComponents
+
 TabButton{
     id: tab
     property bool onIcon
@@ -23,14 +25,11 @@ TabButton{
             Layout.preferredWidth: onIcon ? 50 : 0
             Layout.alignment: Qt.AlignCenter
         }
-        Text{
+        RegComponents.RegWhiteText{
             id: iconText
             anchors.top: iconImage.bottom
             Layout.alignment: Qt.AlignCenter
             text: tab.text
-            color: "#ffffff"
-            font.pixelSize: 14
-            font.styleName: "Black"
         }
     }
 }
