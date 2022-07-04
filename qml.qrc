@@ -9,5 +9,10 @@
         <file>components/RegPopupCreateTabContracts.qml</file>
         <file>components/RegBlackText.qml</file>
         <file>components/RegWhiteText.qml</file>
+        <file>components/RegSettingWindow.qml</file>
+        <file>icons/menu.ico</file>
+        <file>components/RegTabButtonSetting.qml</file>
+        <file>components/RegItemTabSetting.qml</file>
+        <file>components/RegButtonPopup.qml</file>
     </qresource>
 </RCC>

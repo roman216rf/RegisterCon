@@ -1,25 +1,111 @@
-import QtQuick 2.12
-import QtQuick.Window 2.12
-import QtQuick.Controls 2.12
+import QtQuick 2.15
+import QtQuick.Window 2.15
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.12
 import QtQuick.Dialogs 1.3
+import QtGraphicalEffects 1.15
+import QtQml.Models 2.15
 import "components" as RegComponents
 
-Window {
-    width: 640
-    height: 480
+ApplicationWindow {
+    id: application
+    width: 740
+    height: 580
     visible: true
-    title: qsTr("RegisterCon")
+    title: "RegisterCon"
+
+    menuBar: MenuBar{
+        id: menuBar
+        background: Rectangle{
+            width: parent.width
+            color: "#1CA334"
+        }
+
+        Menu{
+            padding: 1
+
+            Action{
+                text: "Опции"
+                onTriggered: popupSetting.show()
+            }
+            MenuSeparator{
+                background: Rectangle{
+                    width: 200
+                    height: 100
+                    color: "#1CA334"
+                }
+                contentItem: Rectangle{
+                    implicitWidth: 200
+                    implicitHeight: 1
+                    color: "#0D4A18"
+                }
+                bottomPadding: 5
+                topPadding: 5
+            }
+            Action{
+                text: "Выход"
+                onTriggered: application.close()
+            }
+
+            delegate: MenuItem{
+                id: menuItem
+                background: Rectangle{
+                    width: parent.width
+                    height: parent.height
+                    color: hovered ? "#42D45C" : "#1CA334"
+                }
+
+                contentItem: RegComponents.RegWhiteText{
+                    text: menuItem.text
+                }
+            }
+        }
+
+        delegate: MenuBarItem{
+            id: menuBarItem
+
+            contentItem:ColumnLayout{
+                anchors.fill: parent
+                Image{
+                    id: iconImageMenu
+                    source: "qrc:/icons/menu.ico"
+                    Layout.preferredHeight: 20
+                    Layout.preferredWidth: 20
+                    Layout.alignment: Qt.AlignCenter
+                    smooth: true
+                    layer.enabled: true
+                    layer.effect:DropShadow{
+                        anchors.fill: iconImageMenu
+                        horizontalOffset: 3
+                        verticalOffset: 3
+                        radius: 8.0
+                        samples: 17
+                        color: "#80000000"
+                        source: iconImageMenu
+                    }
+                }
+            }
+
+            background: Rectangle{
+                width: parent.width
+                height: parent.height
+                color: hovered ? "#42D45C" : "#1CA334"
+            }
+        }
+    }
 
     RegComponents.RegPopupCreateTabContracts{
         id: popupCreateTabContracts
+    }
+    RegComponents.RegSettingWindow{
+        id: popupSetting
     }
 
     TabBar{
         id: mainTabBar
 
         anchors.left: parent.left
-        anchors.top: parent.top
+        anchors.top: menuBar.bottom
         anchors.bottom: parent.bottom
         width: 100
         contentHeight: height / count
@@ -73,8 +159,11 @@ Window {
                 anchors.top: parent.top
                 anchors.bottom: contractsTabBar.top
                 currentIndex: contractsTabBar.currentIndex
-                RegComponents.RegItemTab{
-                    id: test
+
+                Repeater {
+                    model: ObjectModel{
+                        id: modelObj
+                    }
                 }
             }
 
@@ -90,7 +179,9 @@ Window {
 
             Component{
                 id: addTabLayout
-                RegComponents.RegItemTab{}
+                RegComponents.RegItemTab{
+
+                }
             }
 
             TabBar{

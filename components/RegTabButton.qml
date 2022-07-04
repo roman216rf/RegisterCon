@@ -1,7 +1,8 @@
-import QtQuick 2.12
-import QtQuick.Controls 2.12
-import QtQuick.Controls.impl 2.12
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Controls.impl 2.15
 import QtQuick.Layouts 1.12
+import QtGraphicalEffects 1.15
 import "../components" as RegComponents
 
 TabButton{
@@ -24,6 +25,17 @@ TabButton{
             Layout.preferredHeight: onIcon ? 50 : tab.height / 4
             Layout.preferredWidth: onIcon ? 50 : 0
             Layout.alignment: Qt.AlignCenter
+            smooth: true
+            layer.enabled: true
+            layer.effect:DropShadow{
+                anchors.fill: iconImage
+                horizontalOffset: 3
+                verticalOffset: 3
+                radius: 8.0
+                samples: 17
+                color: tab.hovered ? "#80000000" : "#00000000"
+                source: iconImage
+            }
         }
         RegComponents.RegWhiteText{
             id: iconText
