@@ -6,6 +6,7 @@ import QtQuick.Dialogs 1.3
 import QtGraphicalEffects 1.15
 import QtQml.Models 2.15
 import "components" as RegComponents
+import InterfaceLayout 1.0
 
 ApplicationWindow {
     id: application
@@ -14,6 +15,21 @@ ApplicationWindow {
     visible: true
     title: "RegisterCon"
 
+    MessageDialog{
+            id: msgBox
+        }
+
+    //c++ слой уровня "Интерфейс"
+    Interface{
+        id: interfaceLayout
+        onShowPopup: {
+            msgBox.title = title
+            msgBox.text = text
+            msgBox.open()
+        }
+    }
+
+    //Меню
     menuBar: MenuBar{
         id: menuBar
         background: Rectangle{
@@ -94,13 +110,15 @@ ApplicationWindow {
         }
     }
 
-    RegComponents.RegPopupCreateTabContracts{
+    //Объявления всплывающего окна создания новой вкладки договоров
+    RegPopupCreateTabContracts{
         id: popupCreateTabContracts
     }
-    RegComponents.RegSettingWindow{
+    //Обявление окна настроек
+    RegSettingWindow{
         id: popupSetting
     }
-
+    //Главные вкладки: Договоры, Клиенты и Исполнители
     TabBar{
         id: mainTabBar
 

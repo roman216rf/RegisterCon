@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>RegPopupCreateTabContracts.qml</file>
+        <file>RegSettingWindow.qml</file>
+        <file>components/RegBlackText.qml</file>
+        <file>components/RegButtonPopup.qml</file>
+        <file>components/RegItemTab.qml</file>
+        <file>components/RegItemTabSetting.qml</file>
+        <file>components/RegTabButton.qml</file>
+        <file>components/RegTabButtonSetting.qml</file>
+        <file>components/RegWhiteText.qml</file>
+        <file>icons/clients.ico</file>
+        <file>icons/contracts.ico</file>
+        <file>icons/menu.ico</file>
+        <file>icons/performer.ico</file>
+    </qresource>
+</RCC>

@@ -1,13 +1,20 @@
-QT += quick
+QT += quick sql
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        main.cpp
+        connectorLevel/regdatabase.cpp \
+        connectorLevel/regregistr.cpp \
+        interfaceLevel/interface.cpp \
+        main.cpp \
+        processingLevel/processing.cpp \
+        regdatabase.cpp \
+        regregistr.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += qml.qrc \
+    ui/qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -21,4 +28,13 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    README.md
+    README.md \
+    ui/main.qml
+
+HEADERS += \
+    connectorLevel/regdatabase.h \
+    connectorLevel/regregistr.h \
+    interfaceLevel/interface.h \
+    processingLevel/processing.h \
+    regdatabase.h \
+    regregistr.h

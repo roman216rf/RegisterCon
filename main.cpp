@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-
+#include <QQmlContext>
+#include <interfaceLevel/interface.h>
 
 int main(int argc, char *argv[])
 {
@@ -16,7 +17,10 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-    engine.load(url);
 
+
+
+    qmlRegisterType<Interface>("InterfaceLayout", 1, 0, "Interface");
+    engine.load(url);
     return app.exec();
 }
